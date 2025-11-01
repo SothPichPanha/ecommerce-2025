@@ -1,73 +1,53 @@
+<script lang="ts" setup>
+import CategoryComponent from './components/CategoryComponent.vue'
 
-<script setup lang="ts">
+const categories = [
+ { name: "Cake & Milk", items: 14, image: "../image/cate_13.png", bgColor: "#f4f9f4" },
+  { name: "Peach", items: 17, image: "../image/cat-11 1.png", bgColor: "#fff8e1" },
+  { name: "Organic Kiwi", items: 21, image: "../image/cat-12.png", bgColor: "#f3fff3" },
+  { name: "Red Apple", items: 68, image: "../image/cat-4.png", bgColor: "#fff0ed" },
+  { name: "Snack", items: 34, image: "../image/cat-5.png", bgColor: "#fff8e6" },
+  { name: "Black Plum", items: 25, image: "../image/cat-6.png", bgColor: "#fdefff" },
+  { name: "Vegetables", items: 65, image: "../image/cat-7.png", bgColor: "#e7f9e7" },
+  { name: "Headphone", items: 33, image: "../image/cat-8.png", bgColor: "#fff8e1" },
+  { name: "Orange", items: 63, image: "../image/cat-10.png", bgColor: "#fff0f4" },
+]
+
+const banners = [
+  {
+    title: "Everyday Fresh & Clean with Our Products",
+    buttonText: "Shop Now →",
+    image: "../image/Cms-1.png",
+    bgColor: "#f0f3e8",
+    buttonColor: "#3BB77E"
+  },
+  {
+    title: "Make your Breakfast Healthy and Easy",
+    buttonText: "Shop Now →",
+    image: "../image/Cms-2.png",
+    bgColor: "#f5eff7",
+    buttonColor: "#3BB77E"
+  },
+  {
+    title: "The best Organic Products Online",
+    buttonText: "Shop Now →",
+    image: "../image/Cms-3.png",
+    bgColor: "#e8f0f8",
+    buttonColor: "#FDC040"
+  },
+]
 </script>
 
 <template>
-  <div id="app-root">
-    This is my first VueJs project
+  <div class="category-list">
+    <CategoryComponent :categories="categories" :banners="banners" />
   </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.category-list {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
 }
 </style>

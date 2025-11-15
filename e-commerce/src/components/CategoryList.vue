@@ -7,7 +7,7 @@
         :key="index"
         :style="{ backgroundColor: cat.color }"
       >
-        <img :src="cat.image" :alt="cat.name" />
+        <img :src="`http://localhost:3000/${cat.image}`" :alt="cat.name" />
         <h4>{{ cat.name }}</h4>
         <p>{{ cat.productCount }} items</p>
       </div>

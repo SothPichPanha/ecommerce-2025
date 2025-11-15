@@ -13,7 +13,7 @@
         </button>
       </div>
 
-      <img :src="promo.image" :alt="promo.title" />
+      <img :src="`http://localhost:3000/${promo.image}`" :alt="promo.title" />
     </div>
   </div>
 </template>

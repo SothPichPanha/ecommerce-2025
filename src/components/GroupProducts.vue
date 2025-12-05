@@ -7,7 +7,35 @@ export default {
       return (pro.price - (pro.price * pro.promotionAsPercentage) / 100).toFixed(2);
     }
     return pro.price.toFixed(2);
+  },
+  star(rating) {
+    const nostar = 5 - rating;
+    if(rating<5){
+      return "⭐".repeat(rating)+"☆".repeat(nostar);
+    }else if(rating==5){
+      return "⭐".repeat(rating);
+    }
+
+  return "⭐".repeat(rating);
+  },
+    extract_img(input) {
+    if (!input) return "";  
+
+    try {
+ 
+      const arr = JSON.parse(input);
+      return Array.isArray(arr) && arr.length > 0 ? arr[0] : "";
+    } catch (e) {
+ 
+      return input.replace('["', "").replace('"]', "").split('","')[0] || "";
+    }
+  },
+
+  shopnow(pro){
+    alert("Product "+pro.name+" add to cart");
   }
+
+
 },
 
   props: {
@@ -29,17 +57,17 @@ export default {
       <div v-else-if="pro.promotionAsPercentage==0" class="bg-[#FFFFFF] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center">
         
       </div>
-      <div v-else-if="pro.promotionAsPercentage==='hot'" class="bg-[#FD6E6E] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center">
+      <div v-else-if="pro.promotionAsPercentage==='Hot'" class="bg-[#FD6E6E] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center">
         <h3 class="text-white">hot</h3>
       </div>
-      <div v-else-if="pro.promotionAsPercentage==='sale'" class="bg-[#F6C851] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center">
+      <div v-else-if="pro.promotionAsPercentage==='Sale'" class="bg-[#F6C851] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center">
         <h3 class="text-white">sale</h3>
       </div>
       
       <!-- image -->
       <div class="w-[250px] h-[150px] object-cover bg-white-500 mx-auto">
         <img 
-          :src="`http://localhost:3000/${pro.image}`" 
+          :src="`http://localhost:3000/${extract_img(pro.image)}`" 
           :alt="pro.name" 
           class="w-full h-full object-cover"
         >        
@@ -60,7 +88,7 @@ export default {
         <!-- star -->
         <div class="flex flex-row gap-5">
           <div>
-            <h4>star</h4>
+            <h4>{{ star(pro.rating) }}</h4>
           </div>
           <div>
             <h4>({{ pro.rating }})</h4>
@@ -81,9 +109,9 @@ export default {
             <h1>$2.80</h1>
           </div>
           <div class="ml-auto">
-            <div class="counter-container gap-3 flex items-center justify-center bg-[#DEF9EC] rounded-lg h-[30px] w-[80px]">
+            <div class="counter-container gap-3 flex items-center justify-center bg-[#DEF9EC] rounded-lg h-[30px] w-[80px] "  @click="shopnow(pro)"    >
               <h1 class="text-[#3BB77E]">add</h1>   
-              <svg class="w-[10px] h-[10px] text-[#3BB77E]" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-[20px] h-[20px] text-[#3BB77E]" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"/>
               </svg>            
             </div>

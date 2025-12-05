@@ -3,12 +3,9 @@ export default {
   name: "GroupProducts",
   methods: {
   finalPrice(pro) {
-    // If promo is a number and > 0 → apply discount
     if (typeof pro.promotionAsPercentage === "number" && pro.promotionAsPercentage > 0) {
       return (pro.price - (pro.price * pro.promotionAsPercentage) / 100).toFixed(2);
     }
-
-    // Otherwise (promo = 0 or "hot") → return normal price
     return pro.price.toFixed(2);
   }
 },

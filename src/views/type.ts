@@ -1,19 +1,29 @@
-export interface list{
-    id: number;
-    name: string;
-}
-export interface content{
-    id: number;
-    name: string;
+export interface Group {
+  id: number;
+  name: string;
+  image: string;
 }
 
+export interface Category {
+  id: number;
+  name: string;
+  image: string;
+  color: string;
+  productCount: number;
+}
 
-
-
+export interface Promotion {
+  id: number;
+  title: string;
+  url: string;
+  image: string;
+  color: string;
+  buttonColor: string;
+}
 
 export interface Product {
   id: number;
-  name: string;            
+  name: string;              // backend uses "name"
   rating: number;
   size: string;
   image: string;

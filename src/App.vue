@@ -9,18 +9,18 @@
 
 <script>
 import axios from "axios";
-import CategoryList from "./components/CategoryList.vue";
-import PromotionList from "./components/PromotionList.vue";
+import CategoryComponent from "./components/CategoryComponent.vue";
+import PromotionComponent from "./components/PromotionComponent.vue";
 import MenuComponent from "./components/MenuComponent.vue";
-import GroupProducts from "./components/GroupProducts.vue";
+import ProductComponet from "./components/ProductComponent.vue";
 
 export default {
   name: "Home",
   components: {
     MenuComponent,
-    CategoryListLocal: CategoryList,
-    PromotionListLocal: PromotionList,
-    GroupProductslocal: GroupProducts,
+    CategoryListLocal: CategoryComponent,
+    PromotionListLocal: PromotionComponent,
+    GroupProductslocal: ProductComponet,
   },
   data() {
     return {

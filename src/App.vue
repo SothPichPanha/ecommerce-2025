@@ -1,9 +1,11 @@
 <template>
   <div class="home ml-[50px] mr-[50px]">
-    <MenuComponent />
+    <MenuComponent/>
     <CategoryListLocal :categories="categories" />
     <PromotionListLocal :promotions="promotions" />
+    <MenuComponent/>
     <GroupProductslocal :product="product" />
+    
   </div>
 </template>
 

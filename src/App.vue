@@ -1,10 +1,25 @@
 <template>
-  <div class="home">
+  <div class="home ml-[50px] mr-[50px] ">
     <MenuComponent />
     <CategoryListLocal :categories="categories" />
     <PromotionListLocal :promotions="promotions" />
-  
-
+  <div class="grid xl:grid-cols-5 gap-4 p-4">
+    <GroupProducts/>
+    <GroupProducts/>
+    <GroupProducts/>
+      <GroupProducts/>
+    <GroupProducts/>
+      <GroupProducts/>
+    <GroupProducts/>
+      <GroupProducts/>
+    <GroupProducts/>
+    <GroupProducts/>
+      <GroupProducts/>
+    <GroupProducts/>
+      <GroupProducts/>
+    <GroupProducts/>
+  </div>
+    
   </div>
 </template>
 
@@ -14,7 +29,7 @@ import axios from "axios";
 import CategoryList from "./components/CategoryList.vue";
 import PromotionList from "./components/PromotionList.vue";
 import MenuComponent from "./components/MenuComponent.vue";
-
+import GroupProducts from "./components/GroupProducts.vue";
 export default {
   name: "Home",
 /*  */
@@ -22,6 +37,7 @@ export default {
     MenuComponent: MenuComponent ,
     CategoryListLocal: CategoryList,
     PromotionListLocal: PromotionList,
+    GroupProducts: GroupProducts,
     
   },
 

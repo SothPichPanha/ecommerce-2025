@@ -5,6 +5,8 @@
       v-for="(promo, index) in promotions"
       :key="index"
       :style="{ backgroundColor: promo.color }"
+      
+
     > 
       <div class="flex flex-col">
         <h3 class="w-3/5 text-gray-900 text-lg font-semibold leading-snug mb-3">

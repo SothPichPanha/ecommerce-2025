@@ -1,15 +1,21 @@
 <script>
-import cat from "@/assets/image/cat-4.png";
 export default {
   name: "GroupProducts",
+  methods: {
+  finalPrice(pro) {
+    // If promo is a number and > 0 → apply discount
+    if (typeof pro.promotionAsPercentage === "number" && pro.promotionAsPercentage > 0) {
+      return (pro.price - (pro.price * pro.promotionAsPercentage) / 100).toFixed(2);
+    }
+
+    // Otherwise (promo = 0 or "hot") → return normal price
+    return pro.price.toFixed(2);
+  }
+},
+
   props: {
     product: Array
   },
-  data() {
-    return {
-      cat
-    };
-  }
 };
 </script>
 
@@ -19,8 +25,18 @@ export default {
       v-for="(pro, index) in product"
       :key="index"
     >
-      <div class="bg-[#3BB77E] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center">
+    
+      <div v-if="pro.promotionAsPercentage>0" class="bg-[#3BB77E] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center">
         <h3 class="text-white">-{{ pro.promotionAsPercentage }}%</h3>
+      </div>
+      <div v-else-if="pro.promotionAsPercentage==0" class="bg-[#FFFFFF] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center">
+        
+      </div>
+      <div v-else-if="pro.promotionAsPercentage==='hot'" class="bg-[#FD6E6E] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center">
+        <h3 class="text-white">hot</h3>
+      </div>
+      <div v-else-if="pro.promotionAsPercentage==='sale'" class="bg-[#F6C851] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center">
+        <h3 class="text-white">sale</h3>
       </div>
       
       <!-- image -->
@@ -62,7 +78,7 @@ export default {
         <!-- price -->
         <div class="flex flex-row mt-10 mb-3">
           <div class="text-[20px] text-fit flex items-end text-[#3BB77E] font-[Quicksand]">
-            <h1>${{ pro.price }}</h1>
+            <span>${{ finalPrice(pro) }}</span>
           </div>
           <div class="text-[13px] flex items-end ml-3 line-through text-[#7E7E7E]">
             <h1>$2.80</h1>

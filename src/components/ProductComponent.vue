@@ -30,10 +30,20 @@ export default {
       return input.replace('["', "").replace('"]', "").split('","')[0] || "";
     }
   },
+    viewProduct(pro) {
+      // Navigate to product detail page
+      this.$router.push({ 
+        name: 'productview', 
+        params: { id: pro.id }
+      });
+    },
 
   shopnow(pro){
     alert("Product "+pro.name+" add to cart");
-  }
+  },
+    props: {
+    product: Array
+  },
 
 
 },
@@ -49,6 +59,7 @@ export default {
     <div class="bg-white rounded-lg shadow-md w-[320px] h-[450px] flex flex-col gap-4 border-1 border-[#BCE3C9] transition-all duration-300 hover:border-black"
       v-for="(pro, index) in product"
       :key="index"
+      @click="viewProduct(pro)"
     >
     
       <div v-if="pro.promotionAsPercentage>0" class="bg-[#3BB77E] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center">

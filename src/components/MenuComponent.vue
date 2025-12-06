@@ -1,14 +1,17 @@
 <script lang="ts">
-import type { list as ListItem, content as ContentItem } from "../views/type";
+import type { list as ListItem} from "../views/type";
 
 export default {
   name: "MenuComponent",
+  props: {
+    title: {
+      type: String,
+      required: true,
+      default: ''
+    }
+  },
   data() {
     return {
-      content: [
-        { id: 0, name: "Home" },
-        { id: 1, name: "Shop" },
-      ] as ContentItem[],
       lists: [
         { id: 0, name: "All" },
         { id: 1, name: "Milks & Dairies" },
@@ -26,7 +29,7 @@ export default {
 <template>
   <div class="w-full flex items-center justify-between py-4">
     <div>
-      <h1 class="text-2xl font-semibold text-gray-800 m-0">Featured Categories</h1>
+      <h1 class="text-2xl font-semibold text-gray-800 m-0">{{ title }}</h1>
     </div>
     <nav>
       <ul class="flex items-center gap-6 m-0 p-0 list-none">

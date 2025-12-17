@@ -1,59 +1,3 @@
-<script>
-export default {
-  name: "GroupProducts",
-  methods: {
-  finalPrice(pro) {
-    if (typeof pro.promotionAsPercentage === "number" && pro.promotionAsPercentage > 0) {
-      return (pro.price - (pro.price * pro.promotionAsPercentage) / 100).toFixed(2);
-    }
-    return pro.price.toFixed(2);
-  },
-  star(rating) {
-    const nostar = 5 - rating;
-    if(rating<5){
-      return "⭐".repeat(rating)+"☆".repeat(nostar);
-    }else if(rating==5){
-      return "⭐".repeat(rating);
-    }
-
-  return "⭐".repeat(rating);
-  },
-    extract_img(input) {
-    if (!input) return "";  
-
-    try {
- 
-      const arr = JSON.parse(input);
-      return Array.isArray(arr) && arr.length > 0 ? arr[0] : "";
-    } catch (e) {
- 
-      return input.replace('["', "").replace('"]', "").split('","')[0] || "";
-    }
-  },
-    viewProduct(pro) {
-      // Navigate to product detail page
-      this.$router.push({ 
-        name: 'productview', 
-        params: { id: pro.id }
-      });
-    },
-
-  shopnow(pro){
-    alert("Product "+pro.name+" add to cart");
-  },
-    props: {
-    product: Array
-  },
-
-
-},
-
-  props: {
-    product: Array
-  },
-};
-</script>
-
 <template>
   <div class="grid xl:grid-cols-5 gap-4 p-4">
     <div class="bg-white rounded-lg shadow-md w-[320px] h-[450px] flex flex-col gap-4 border-1 border-[#BCE3C9] transition-all duration-300 hover:border-black"
@@ -62,18 +6,34 @@ export default {
       @click="viewProduct(pro)"
     >
     
-      <div v-if="pro.promotionAsPercentage>0" class="bg-[#3BB77E] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center">
-        <h3 class="text-white">-{{ pro.promotionAsPercentage }}%</h3>
-      </div>
-      <div v-else-if="pro.promotionAsPercentage==0" class="bg-[#FFFFFF] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center">
-        
-      </div>
-      <div v-else-if="pro.promotionAsPercentage==='Hot'" class="bg-[#FD6E6E] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center">
-        <h3 class="text-white">hot</h3>
-      </div>
-      <div v-else-if="pro.promotionAsPercentage==='Sale'" class="bg-[#F6C851] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center">
-        <h3 class="text-white">sale</h3>
-      </div>
+
+    <div
+      v-if="pro.promotionAsPercentage > 0"
+      class="bg-[#3BB77E] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center"
+    >
+      <h3 class="text-white">-{{ pro.promotionAsPercentage }}%</h3>
+    </div>
+
+    <div
+      v-else-if="pro.countSold >= 25"
+      class="bg-[#FD6E6E] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center"
+    >
+      <h3 class="text-white">hot</h3>
+    </div>
+
+    <div
+      v-else-if="pro.countSold >= 15"
+      class="bg-[#F6C851] w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center"
+    >
+      <h3 class="text-white">sale</h3>
+    </div>
+    <div
+    v-else
+    class="bg-white w-[60px] h-[35px] mt-6 rounded-r-full flex justify-center items-center"
+    ></div>
+
+
+
       
       <!-- image -->
       <div class="w-[250px] h-[150px] object-cover bg-white-500 mx-auto">
@@ -92,7 +52,7 @@ export default {
         </div>
         
         <!-- title -->
-        <div class="text-black font-[Quicksand]"> 
+        <div class="text-black font-[Quicksand] font-bold"> 
           <h2>{{ pro.name }}</h2>
         </div>
         
@@ -132,6 +92,58 @@ export default {
     </div>
   </div>
 </template>
+<script>
+export default {
+  name: "GroupProducts",
+    props: {
+    product: {
+      type: Array,
+      default: () => []
+    }
+  },
+  methods: {
+  finalPrice(pro) {
+    if (typeof pro.promotionAsPercentage === "number" && pro.promotionAsPercentage > 0) {
+      return (pro.price - (pro.price * pro.promotionAsPercentage) / 100).toFixed(2);
+    }
+    return pro.price.toFixed(2);
+  },
+  star(rating) {
+    const nostar = 5 - rating;
+    if(rating<5){
+      return "⭐".repeat(rating)+"☆".repeat(nostar);
+    }else if(rating==5){
+      return "⭐".repeat(rating);
+    }
+
+  return "⭐".repeat(rating);
+  },
+    extract_img(input) {
+    if (!input) return "";  
+
+    try {
+ 
+      const arr = JSON.parse(input);
+      return Array.isArray(arr) && arr.length > 0 ? arr[0] : "";
+    } catch (e) {
+ 
+      return input.replace('["', "").replace('"]', "").split('","')[0] || "";
+    }
+  },
+    viewProduct(pro) {
+      this.$router.push({ 
+        name: 'productview', 
+        params: { id: pro.id }
+      });
+    },
+
+  shopnow(pro){
+    alert("Product "+pro.name+" add to cart");
+  },
+},
+};
+</script>
+
 
 <style scoped>
 .counter-container button {

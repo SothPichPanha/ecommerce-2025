@@ -28,12 +28,15 @@
 <script>
 export default {
   name: "CategoryList",
-  props: {
-    categories: Array
+    props: {
+    categories: {
+      type: Array,
+      default: () => []
+    }
   }
 };
 </script>
 
 <style scoped>
-/* No custom styles needed - all handled by Tailwind */
+ 
 </style>

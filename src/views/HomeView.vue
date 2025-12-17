@@ -1,20 +1,21 @@
 <template>
   <div class="home ml-[50px] mr-[50px]">
-    <MenuComponent title="Featured category"/>
+    <Header/>
+    <MenuComponent title="Featured category" />
     <CategoryListLocal :categories="categories" />
     <PromotionListLocal :promotions="promotions" />
-    <MenuComponent title="Popular Products"/>
-    <GroupProductslocal :product="product" />
-    
+    <MenuComponent title="Popular Products" />
+    <GroupProductslocal :product="products" />
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import { useProductStore } from "@/stores/productStore";
 import CategoryComponent from "../components/CategoryComponent.vue";
 import PromotionComponent from "../components/PromotionComponent.vue";
 import MenuComponent from "../components/MenuComponent.vue";
-import ProductComponet from "../components/ProductComponent.vue";
+import ProductComponent from "../components/ProductComponent.vue";
+import Header from "../components/HeaderComponent.vue"
 
 export default {
   name: "Home",
@@ -22,53 +23,37 @@ export default {
     MenuComponent,
     CategoryListLocal: CategoryComponent,
     PromotionListLocal: PromotionComponent,
-    GroupProductslocal: ProductComponet,
+    GroupProductslocal: ProductComponent,
+    Header,
   },
   data() {
     return {
-      categories: [], 
-      promotions: [],
-      product: []
+      store: useProductStore(),
     };
   },
-  methods: {
-    async fetchCategories() {
-      try {
-        const res = await axios.get("http://localhost:3000/api/categories");
-        this.categories = res.data;   
-        console.log("Loaded categories:", this.categories);
-      } catch (err) {
-        console.error("Error loading categories:", err);
-      }
+  computed: {
+    categories() {
+      return this.store.categories || [];
     },
-    async fetchPromotions() {
-      try {
-        const res = await axios.get("http://localhost:3000/api/promotions");
-        this.promotions = res.data;
-        console.log("Loaded promotions:", this.promotions);
-      } catch (err) {
-        console.error("Error loading promotions:", err);
-      }
+    promotions() {
+      return this.store.promotions || [];
     },
-    async fetchProducts() {
-      try {
-        const res = await axios.get("http://localhost:3000/api/products");
-        console.log("API Response:", res);
-        console.log("Response data:", res.data);
-        this.product = res.data;
-        console.log("Loaded products:", this.product);
-        console.log("Product count:", this.product.length);
-      } catch (err) {
-        console.error("Error loading products:", err);
-        console.error("Error details:", err.response);
-      }
+    products() {
+      // Access the getter correctly and return all products if no popular ones
+      const popularProducts = this.store.products.filter(p => p.popular);
+      return popularProducts.length > 0 ? popularProducts : this.store.products;
     },
   },
-  mounted() {
-    this.fetchCategories();
-    this.fetchPromotions();
-    this.fetchProducts();
-  }
+  async mounted() {
+    if (!this.store.loaded) {
+      await this.store.loadAll();
+    }
+    
+    // Debug: Check if products are loaded
+    console.log('Products loaded:', this.store.products);
+    console.log('Categories:', this.store.categories);
+    console.log('Promotions:', this.store.promotions);
+  },
 };
 </script>
 

@@ -1,0 +1,115 @@
+<script>
+import dropdown from './DropdownMenu.vue'
+export default{
+    name:Headers,
+    components: {
+        dropdown,
+    },
+    data(){
+        return {
+            list:[
+                {title:'me',link:'#'},
+                {title:'me1',link:'#'},
+                {title:'me2',link:'#'},
+                {title:'me3',link:'#'},
+            ],
+            cate:[
+                {title:'me',link:'#'},
+                {title:'me1',link:'#'},
+                {title:'me2',link:'#'},
+                {title:'me3cc',link:'#'},
+            ],
+            food:[
+                {title:'me',link:'#'},
+                {title:'me1',link:'#'},
+                {title:'me2',link:'#'},
+                {title:'me3cc',link:'#'},
+        ]
+        }
+    }
+}
+</script>
+
+<template>
+    <div class="">
+        <!-- section1 -->
+        <div class="flex justify-between mt-[15px] mb-[15px]">
+            <!-- logo -->
+            <div>
+                <img src="/Logo.png" alt="">
+            </div>
+
+            <!-- search -->
+            <div class="border-2 border-[#BCE3C9] rounded-lg w-[700px] h-[50px] flex flex-cols items-center p-[20px]">
+                <div class="flex items-center gap-5">
+                    <dropdown title="All Categories" :items ="list" />
+                </div>
+                
+            <div class="flex items-center  rounded-lg px-3 py-2 w-full max-w-md">
+                <img src="/Line1.png" alt="line icon" class="mr-2">
+                <input 
+                    type="text" 
+                    placeholder="Search for items" 
+                    class="flex-1 outline-none text-gray-600"
+                >
+                <img src="/search.png" alt="search icon" class="ml-2">
+            </div>
+
+
+            </div>
+
+            <!-- profile -->
+            <div class="flex flex-cols gap-10 items-center">
+                <img src="/account.png" alt="" class="w-[87px] h-[27px]">
+                <img src="/compare.png" alt=""  class="w-[87px] h-[27px]">
+                <img src="/wishlist.png" alt="" class="w-[87px] h-[27px]">
+                <img src="/cart.png" alt=""  class="w-[87px] h-[27px]">
+            </div>
+        </div>
+
+        <!-- section2 -->
+         <hr>
+        <div class="flex flex-cols justify-between items-center">
+            <div class="bg-[#3BB77E] w-[250px] h-[45px] rounded-lg flex flex-cols items-center justify-center gap-5 m-4">
+            <img src="/01 align center.png" alt="">
+            <dropdown title="Browse All Categories " :items ="cate" color = "text-white"/>
+            </div>
+                <ol class="flex flex-cols gap-2">
+                    <img src="/02 align center.png" alt="">
+                        Hot Deals
+                </ol>
+                <div>
+                    <ul class="flex flex-cols gap-10">
+                        <ol>Home</ol>
+                        <ol>
+                            <dropdown title="Food" :items="food"/>
+                        </ol>
+                        <ol>
+                         <dropdown title="Vegetables" :items="food"/>
+                        </ol>
+                        <ol>Drink </ol>
+                        <ol>Cookies</ol>
+                        <ol>
+                        <dropdown title="Meat & Seafood" :items="food"/>
+                        </ol>
+                        <ol>Bakery</ol>
+                        
+                    </ul>
+                </div>
+
+            <div class="flex flex-cols gap-5">
+                <span class="flex items-center justify-center"><img src="/03align center.png" alt="" ></span>
+                <div class="flex flex-col">
+                    <span class="text-[#3BB77E] text-[20px]">099 777 888</span>
+                    <span class="text-[#7E7E7E] text-[12px]">24/7 Support Center</span>
+                </div>
+            </div>
+        </div>
+        
+        <hr>
+    </div>
+</template>
+
+<script>
+
+</script>

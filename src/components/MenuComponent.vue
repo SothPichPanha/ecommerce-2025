@@ -21,8 +21,15 @@ export default {
         { id: 5, name: "Vegetables" },
         { id: 6, name: "Fruits" },
       ] as ListItem[],
+      activeId:0,
     };
   },
+  methods: {
+    selectItem(id: number) {
+      this.activeId = id;
+      this.$emit('item-selected', id);
+    }
+  }
 };
 </script>
 
@@ -36,8 +43,12 @@ export default {
         <li
           v-for="item in lists"
           :key="item.id"
-          class="text-gray-600 hover:text-green-500 cursor-pointer transition-colors duration-200 text-base font-medium"
-        >
+          :class="[
+            'cursor-pointer transition-colors duration-200 text-base font-medium',
+            activeId === item.id ? 'text-green-500' : 'text-gray-600 hover:text-green-500'
+          ]"
+          @click="selectItem(item.id)"
+          >
           {{ item.name }}
         </li>
       </ul>

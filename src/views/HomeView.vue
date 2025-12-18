@@ -1,6 +1,7 @@
 <template>
-  <div class="home ml-[50px] mr-[50px]">
+  <div class=" ">
     <Header/>
+    <Figure/>
     <MenuComponent title="Featured category" />
     <CategoryListLocal :categories="categories" />
     <PromotionListLocal :promotions="promotions" />
@@ -16,6 +17,7 @@ import PromotionComponent from "../components/PromotionComponent.vue";
 import MenuComponent from "../components/MenuComponent.vue";
 import ProductComponent from "../components/ProductComponent.vue";
 import Header from "../components/HeaderComponent.vue"
+import Figure from "../components/FigureComponent.vue"
 
 export default {
   name: "Home",
@@ -25,6 +27,7 @@ export default {
     PromotionListLocal: PromotionComponent,
     GroupProductslocal: ProductComponent,
     Header,
+    Figure
   },
   data() {
     return {

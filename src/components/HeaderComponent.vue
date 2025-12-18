@@ -1,9 +1,11 @@
 <script>
 import dropdown from './DropdownMenu.vue'
+import search from './SearchComponent.vue'
 export default{
     name:Headers,
     components: {
         dropdown,
+        search
     },
     data(){
         return {
@@ -40,24 +42,7 @@ export default{
             </div>
 
             <!-- search -->
-            <div class="border-2 border-[#BCE3C9] rounded-lg w-[700px] h-[50px] flex flex-cols items-center p-[20px]">
-                <div class="flex items-center gap-5">
-                    <dropdown title="All Categories" :items ="list" />
-                </div>
-                
-            <div class="flex items-center  rounded-lg px-3 py-2 w-full max-w-md">
-                <img src="/Line1.png" alt="line icon" class="mr-2">
-                <input 
-                    type="text" 
-                    placeholder="Search for items" 
-                    class="flex-1 outline-none text-gray-600"
-                >
-                <img src="/search.png" alt="search icon" class="ml-2">
-            </div>
-
-
-            </div>
-
+            <search/>
             <!-- profile -->
             <div class="flex flex-cols gap-10 items-center">
                 <img src="/account.png" alt="" class="w-[87px] h-[27px]">
@@ -74,7 +59,7 @@ export default{
             <img src="/01 align center.png" alt="">
             <dropdown title="Browse All Categories " :items ="cate" color = "text-white"/>
             </div>
-                <ol class="flex flex-cols gap-2">
+                <ol class="flex flex-cols gap-2 pr-[50px]">
                     <img src="/02 align center.png" alt="">
                         Hot Deals
                 </ol>
@@ -82,7 +67,7 @@ export default{
                     <ul class="flex flex-cols gap-10">
                         <ol>Home</ol>
                         <ol>
-                            <dropdown title="Food" :items="food"/>
+                            <dropdown title="Food" :items="food" />
                         </ol>
                         <ol>
                          <dropdown title="Vegetables" :items="food"/>
@@ -92,7 +77,7 @@ export default{
                         <ol>
                         <dropdown title="Meat & Seafood" :items="food"/>
                         </ol>
-                        <ol>Bakery</ol>
+                        <ol class="pr-[360px]">Bakery</ol>
                         
                     </ul>
                 </div>
@@ -110,6 +95,8 @@ export default{
     </div>
 </template>
 
-<script>
-
-</script>
+<style>
+.ol{
+    color: red;
+}
+</style>

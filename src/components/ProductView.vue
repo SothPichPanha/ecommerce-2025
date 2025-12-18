@@ -1,9 +1,11 @@
 <script>
 import { useProductStore } from "@/stores/productStore";
-
+import Header from "../components/HeaderComponent.vue"
 export default {
   name: "ProductView",
-
+components:{
+  Header,
+},
   data() {
     return {
       product: null,
@@ -11,6 +13,7 @@ export default {
       error: null,
       quantity: 1,
       selectedImage: null,
+      
     };
   },
 
@@ -77,9 +80,16 @@ export default {
 
 <template>
 
-
+  <Header/>
+  <div class="m-10 flex gap-5 items-center">
+    <span>Home</span>
+    <img src="/down.png" alt="" class="rotate-270 w-[6px] h-[10px]">
+    <span>Vegetables & tubers</span>
+    <img src="/down.png" alt="" class="rotate-270 w-[6px] h-[10px]">
+    <span class="text-[#3BB77E]">{{ product?.name }}</span>
+  </div>
     <!-- setion1 -->
-  <div class="flex gap-[100px]">
+  <div class="flex gap-[50px]">
     <!-- Images -->
     <div class="flex-shrink-0 wrap-anywhere">
       <div 
@@ -88,7 +98,7 @@ export default {
         @click="selectImage(image)"
         :class="[
           'w-[800px] h-[600px] border-2 rounded-lg p-2 cursor-pointer transition',
-          selectedImage === image ? 'border-[#3BB77E]' : 'border-gray-200 hover:border-[#3BB77E]' 
+          selectedImage === image ? 'border-[#E5E5E5]' : 'border-gray-200 hover:border-[#3BB77E]' 
         ]"
       >
         <img 

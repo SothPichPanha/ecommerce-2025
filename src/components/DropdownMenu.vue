@@ -12,7 +12,7 @@ export default {
     },
     color: {
       type: String,
-      default: 'text-gray-800',
+      default: 'text-[#253D4E]',
     },
   },
   data() {

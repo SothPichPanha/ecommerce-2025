@@ -67,6 +67,9 @@ export const useProductStore = defineStore("product", {
     getProductById: (state) => {
       return (id) => state.products.find((p) => String(p.id) === String(id));
     },
+    getCategoriesById: (state) => {
+      return (id) => state.categories.find((c) => String(c.id) === String(id));
+    },
     
     allCategories: (state) => {
       return state.categories;

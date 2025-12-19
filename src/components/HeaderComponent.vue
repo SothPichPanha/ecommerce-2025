@@ -54,9 +54,9 @@ export default{
 
         <!-- section2 -->
          <hr>
-        <div class="flex flex-cols  items-center">
+        <div class="flex flex-cols  items-center ">
              
-            <div class="bg-[#3BB77E] w-[250px] h-[45px] rounded-lg flex flex-cols items-center justify-center gap-5 m-4">
+            <div class="bg-[#3BB77E] w-[250px] h-[45px] rounded-lg flex flex-cols items-center justify-center gap-5 mt-3 mb-3">
             <img src="/01 align center.png" alt="">
             <dropdown title="Browse All Categories " :items ="cate" color = "text-white"/>
             </div>
@@ -78,7 +78,7 @@ export default{
                     </ul>
                 </div>
 
-            <div class="flex flex-cols gap-5 pl-[355px]">
+            <div class="flex flex-cols gap-5 pl-[386px]">
                 <span class="flex items-center justify-center"><img src="/03align center.png" alt="" ></span>
                 <div class="flex flex-col">
                     <span class="text-[#3BB77E] text-[20px]">099 777 888</span>

@@ -1,6 +1,6 @@
 <template>
-  <div class="grid xl:grid-cols-5 gap-4 p-4">
-    <div class="bg-white rounded-lg shadow-md w-[320px] h-[450px] flex flex-col gap-4 border-1 border-[#BCE3C9] transition-all duration-300 hover:border-black"
+  <div class="grid xl:grid-cols-5 gap-4 ">
+    <div class="bg-white rounded-lg shadow-md w-[335px] h-[450px] flex flex-col gap-4 border-1 border-[#BCE3C9] transition-all duration-300 hover:border-black"
       v-for="(pro, index) in product"
       :key="index"
       @click="viewProduct(pro)"

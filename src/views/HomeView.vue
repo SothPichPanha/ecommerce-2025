@@ -1,5 +1,5 @@
 <template>
-  <div class=" ">
+  
     <Header/>
     <Figure/>
     <MenuComponent title="Featured category" />
@@ -7,7 +7,7 @@
     <PromotionListLocal :promotions="promotions" />
     <MenuComponent title="Popular Products" />
     <GroupProductslocal :product="products" />
-  </div>
+   
 </template>
 
 <script>

@@ -19,7 +19,7 @@ export default {
 </script>
 
 <template>
-  <div class="w-full rounded-lg overflow-hidden m-5">
+  <div class="w-full rounded-lg overflow-hidden mt-5 mb-5 ">
     <div class="relative w-full h-[540px] 
   bg-[url('/bg.png'),linear-gradient(#FFF3E0,#FFF3E0)] 
   bg-no-repeat bg-cover rounded-lg flex items-center">

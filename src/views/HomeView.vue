@@ -17,7 +17,7 @@ import PromotionComponent from "../components/PromotionComponent.vue";
 import MenuComponent from "../components/MenuComponent.vue";
 import ProductComponent from "../components/ProductComponent.vue";
 import Header from "../components/HeaderComponent.vue"
-import Figure from "../components/FigureComponent.vue"
+import Figure from "../components/ShowCaseComponent.vue"
 
 export default {
   name: "Home",
@@ -42,7 +42,7 @@ export default {
       return this.store.promotions || [];
     },
     products() {
-      // Access the getter correctly and return all products if no popular ones
+
       const popularProducts = this.store.products.filter(p => p.popular);
       return popularProducts.length > 0 ? popularProducts : this.store.products;
     },
@@ -51,8 +51,6 @@ export default {
     if (!this.store.loaded) {
       await this.store.loadAll();
     }
-    
-    // Debug: Check if products are loaded
     console.log('Products loaded:', this.store.products);
     console.log('Categories:', this.store.categories);
     console.log('Promotions:', this.store.promotions);

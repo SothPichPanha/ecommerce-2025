@@ -26,6 +26,7 @@ const router = createRouter({
       name: "header",
       component: Header,
     },
+
     
   ],
 })

@@ -1,14 +1,14 @@
 <script>
-import ProductView from '@/components/ProductView.vue';
+import Productdetail from '@/components/Productdetail.vue';
 
 export default {
   name: 'ProductViewPage',
   components: {
-    ProductView
+    Productdetail
   }
 }
 </script>
 
 <template>
-  <ProductView />
+  <Productdetail />
 </template>

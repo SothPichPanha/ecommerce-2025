@@ -1,5 +1,5 @@
 <script>
-import dropdown from './DropdownMenu.vue'
+import dropdown from './MenuItem.vue'
 import search from './SearchComponent.vue'
 export default{
     name:Headers,
@@ -54,35 +54,31 @@ export default{
 
         <!-- section2 -->
          <hr>
-        <div class="flex flex-cols justify-between items-center">
+        <div class="flex flex-cols  items-center">
+             
             <div class="bg-[#3BB77E] w-[250px] h-[45px] rounded-lg flex flex-cols items-center justify-center gap-5 m-4">
             <img src="/01 align center.png" alt="">
             <dropdown title="Browse All Categories " :items ="cate" color = "text-white"/>
             </div>
-                <ol class="flex flex-cols gap-2 pr-[50px]">
+            <router-link to="/"><span class="flex flex-cols gap-2 pr-[50px] pl-[50px]">
                     <img src="/02 align center.png" alt="">
                         Hot Deals
-                </ol>
+                </span></router-link>
+                
                 <div>
                     <ul class="flex flex-cols gap-10">
-                        <ol>Home</ol>
-                        <ol>
-                            <dropdown title="Food" :items="food" />
-                        </ol>
-                        <ol>
-                         <dropdown title="Vegetables" :items="food"/>
-                        </ol>
-                        <ol>Drink </ol>
-                        <ol>Cookies</ol>
-                        <ol>
+                        <dropdown title="Home"/>
+                        <dropdown title="Food" :items="food" />
+                        <dropdown title="Vegetables" :items="food"/>
+                        <dropdown title="Drink"/>
+                        <dropdown title="Cookies"/>
                         <dropdown title="Meat & Seafood" :items="food"/>
-                        </ol>
-                        <ol class="pr-[360px]">Bakery</ol>
+                        <dropdown title="Bakery"/>
                         
                     </ul>
                 </div>
 
-            <div class="flex flex-cols gap-5">
+            <div class="flex flex-cols gap-5 pl-[355px]">
                 <span class="flex items-center justify-center"><img src="/03align center.png" alt="" ></span>
                 <div class="flex flex-col">
                     <span class="text-[#3BB77E] text-[20px]">099 777 888</span>

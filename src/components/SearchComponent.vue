@@ -1,5 +1,5 @@
 <script>
-import dropdown from './DropdownMenu.vue'
+import dropdown from './MenuItem.vue'
 export default{
     nam: 'search',
     components:{

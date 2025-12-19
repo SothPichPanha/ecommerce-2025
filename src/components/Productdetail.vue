@@ -2,7 +2,7 @@
 import { useProductStore } from "@/stores/productStore";
 import Header from "../components/HeaderComponent.vue"
 export default {
-  name: "ProductView",
+  name: "Productdetail",
 components:{
   Header,
 },

@@ -36,7 +36,7 @@ export default {
 
 <template>
   <Header/>
-  <div class="w-[1830px] h-[240px] bg-[url(/figure.png)] rounded-lg mt-5 bg-cover">
+  <div class="w-[1750px] h-[240px] bg-[url(/figure.png)] rounded-lg mt-5 bg-cover">
     <div class="p-[50px]">
           <span class="text-[50px] text-[#253D4E] font-[Quicksand] font-bold">{{ category ? category.name : '' }}</span>
       <div class="flex flex-cols gap-5 items-center">

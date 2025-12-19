@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'DropdownMenu',
+  name: 'MenuItem',
   props: {
     title: {
       type: String,
@@ -8,7 +8,7 @@ export default {
     },
     items: {
       type: Array,
-      required: true,
+      default: () => [],
     },
     color: {
       type: String,
@@ -21,15 +21,22 @@ export default {
       closeTimer: null,
     }
   },
+  computed: {
+    hasItems() {
+      return this.items && this.items.length > 0
+    },
+  },
   methods: {
     onEnter() {
+      if (!this.hasItems) return
       clearTimeout(this.closeTimer)
       this.open = true
     },
     onLeave() {
+      if (!this.hasItems) return
       this.closeTimer = setTimeout(() => {
         this.open = false
-      }, 300) // hover delay
+      }, 300)
     },
   },
 }
@@ -43,16 +50,22 @@ export default {
   >
     <!-- TITLE -->
     <div
-      class="flex items-center gap-2 font-bold cursor-pointer transition-colors duration-200 "
+      class="flex items-center gap-2 font-bold cursor-pointer transition-colors duration-200"
       :class="color"
     >
       {{ title }}
-      <img src="/down.png" class="w-[11px] h-[6px] hover:rotate-180" />
+
+      <!-- Arrow only if items exist -->
+      <img
+        v-if="hasItems"
+        src="/down.png"
+        class="w-[11px] h-[6px] transition-transform duration-200 hover:rotate-180"
+      />
     </div>
 
     <!-- DROPDOWN -->
     <div
-      v-if="open"
+      v-if="open && hasItems"
       class="absolute top-full mt-2 bg-white border rounded shadow w-40 z-50"
     >
       <div

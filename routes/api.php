@@ -1,18 +1,26 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ProductController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use \App\Http\Controllers\CategoryController;
+use \App\Http\Controllers\ProductController;
 
-Route::get('/', function () { return view('welcome'); });
+Route::get('/user', function (Request $request) {
+    return $request->user();
+})->middleware('auth:sanctum');
 
-Route::get('/categories', [CategoryController::class, 'getCategories']);
-Route::post('/categories', [CategoryController::class, 'createCategory']);
-Route::put('/categories/{categoryId}', [CategoryController::class, 'updateCategory']);
-Route::delete('/categories/{categoryId}', [CategoryController::class, 'deleteCategory']);
+Route::controller(CategoryController::class)->prefix('categories')->group(function () {
+    Route::get('/', 'getCategories');
+    Route::post('/', 'createCategory');
+    Route::get('/{categoryId}', 'getCategory');
+    Route::patch('/{categoryId}', 'updateCategory');
+    Route::delete('/{categoryId}', 'deleteCategory');
+});
 
-
-Route::get('/products', [ProductController::class, 'getProducts']);
-Route::post('/products/product', [ProductController::class, 'createProduct']);
-Route::put('/products/{productId}', [ProductController::class, 'updateProduct']);
-Route::delete('/products/{productId}', [ProductController::class, 'deleteProduct']);
+Route::controller(ProductController::class)->prefix('products')->group(function () {
+    Route::get('/', 'getProducts');
+    Route::post('/', 'createProduct');
+    Route::get('/{productId}', 'getProduct');
+    Route::patch('/{productId}', 'updateProduct');
+    Route::delete('/{productId}', 'deleteProduct');
+});

@@ -16,9 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->json('images')->nullable();
+            $table->integer('price');
+            $table->integer('category_id');
             $table->timestamps();
 
-            $table->foreignId('category_id')->references('id')->on('categories');
         });
     }
 

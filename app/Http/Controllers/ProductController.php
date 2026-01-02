@@ -2,28 +2,57 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-          public function getProduct()
+    public function getProducts()
     {
-        return ["message" => "Getting list of Product"];
+        $products = Product::all();
+        return response()->json([
+            "message" => "Getting all products",
+            "data" => $products
+        ]);
     }
 
-    public function createProduct()
+    public function createProduct(Request $request)
     {
-        return ["message" => "Creating 1  new product"];
-    }                                                                                                                                                                                                                                                                                                                        
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
 
+        $product = Product::create($validated);
 
-    public function updateProduct($productId)
+        return response()->json([
+            "message" => "Creating 1 new product",
+            "data" => $product
+        ], 201);
+    }
+
+    public function updateProduct(Request $request, $productId)
     {
-        return ["message" => "Updating product with id: $id"];
+        $product = Product::findOrFail($productId);
+
+        $validated = $request->validate([
+            'name' => 'sometimes|required|string|max:255',
+        ]);
+
+        $product->update($validated);
+
+        return response()->json([
+            "message" => "Updating product with id: $productId",
+            "data" => $product
+        ]);
     }
 
     public function deleteProduct($productId)
     {
-        return ["message" => "Deleting product with id: $id"];
+        $product = Product::findOrFail($productId);
+        $product->delete();
+
+        return response()->json([
+            "message" => "Deleting product with id: $productId"
+        ]);
     }
 }

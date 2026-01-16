@@ -63,4 +63,23 @@ class ProductController extends Controller
         $product->delete();
         return response()->json(['message' => 'Product deleted']);
     }
+    public function store(Request $request)
+    {
+        $user = $request->user();
+
+        // Check if user has manager or admin role
+        if (!$user->roles()->whereIn('name', ['manager', 'admin'])->exists()) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
+        $validated = $request->validate([
+            'name' => 'required|string',
+            'category_id' => 'required|exists:categories,id',
+            'price' => 'required|numeric',
+        ]);
+
+        $product = Product::create($validated);
+
+        return response()->json($product, 201);
+    }
 }

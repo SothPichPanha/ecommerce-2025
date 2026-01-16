@@ -55,4 +55,18 @@ class CategoryController extends Controller
             "message" => "Deleting category with id: $categoryId"
         ]);
     }
+     public function updateStatus(Request $request, Category $category)
+    {
+        
+        $this->authorize('updateStatus', $category);
+
+        $validated = $request->validate([
+            'status' => 'required|in:active,inactive',
+        ]);
+
+        $category->update($validated);
+
+        return response()->json($category);
+    }
+    
 }

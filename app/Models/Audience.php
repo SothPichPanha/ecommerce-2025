@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\User;
 use App\Models\Article;
 use App\Models\Comment;
-class Audiences extends Model
+class Audience extends Model
 {
     use HasFactory;
+    protected $table = 'audiences';
     protected $fillable = ['name', 'author_id', 'user_id'];
 
     public function user()
@@ -24,7 +25,11 @@ class Audiences extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->morphMany(Comment::class, 'commentable');
     }
-    
+
+        public function author()
+    {
+        return $this->belongsTo(Author::class);
+    }
 }

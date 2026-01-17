@@ -13,13 +13,13 @@ class Article extends Model
     use HasFactory;
     protected $fillable = ['name', 'author_id'];
     
+        public function author()
+    {
+        return $this->belongsTo(Author::class);
+    }
     public function comment()
     {
-        return $this->hasMany(Comment::class);
+        return $this->morphMany(Comment::class);
     }
 
-    public function audiences()
-    {
-        return $this->belongsToMany(Audience::class);
-    }
 }
